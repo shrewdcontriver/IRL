@@ -92,6 +92,13 @@ body {
   color: var(--muted);
 }
 
+.credits {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
 /* ========== DEMO LAYOUT ========== */
 .demo {
   min-height: 100vh;
