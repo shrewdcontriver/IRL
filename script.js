@@ -46,20 +46,30 @@ function openChat(user) {
   const avatarEl = document.getElementById('chatAvatar');
   const messagesEl = document.getElementById('chatMessages');
 
-  nameEl.textContent = user;
-  avatarEl.textContent = user.charAt(0).toUpperCase();
+  // Display names
+  const displayNames = {
+    preeti: "Preeti ma'am",
+    yasir: "Yasir",
+    shiksha: "Shiksha ma'am",
+    zaman: "Zaman",
+    shilpi: "Shilpi ma'am"
+  };
+
+  nameEl.textContent = displayNames[user] || user;
+  avatarEl.textContent = (displayNames[user] || user).charAt(0).toUpperCase();
 
   // Simple avatar colors
   const colors = {
-    ananya: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)',
-    rahul: 'linear-gradient(45deg,#4facfe,#00f2fe)',
-    priya: 'linear-gradient(45deg,#43e97b,#38f9d7)',
-    karan: 'linear-gradient(45deg,#fa709a,#fee140)'
+    preeti: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)',
+    yasir: 'linear-gradient(45deg,#4facfe,#00f2fe)',
+    shiksha: 'linear-gradient(45deg,#43e97b,#38f9d7)',
+    zaman: 'linear-gradient(45deg,#fa709a,#fee140)',
+    shilpi: 'linear-gradient(45deg,#a18cd1,#fbc2eb)'
   };
   avatarEl.style.background = colors[user] || '#555';
 
   // Populate messages
-  if (user === 'ananya') {
+  if (user === 'preeti') {
     messagesEl.innerHTML = `
       <div class="message received">Hey! Check this out 👇</div>
       <div class="shared-reel-card" onclick="showView('reel')">
