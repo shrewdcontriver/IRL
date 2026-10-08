@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>IRL — Your people, not your feed</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Landing / Intro Section -->
+  <section id="landing" class="landing">
+    <div class="landing-content">
+      <div class="logo">IRL</div>
+      <p class="tagline">Your people, not your feed.</p>
+      <p class="subtitle">
+        A focus-first Instagram experience for Android.<br>
+        Keep Stories, DMs & friends. Lose the endless scroll.
+      </p>
+      <button id="tryDemoBtn" class="primary-btn">Try the Interactive Demo</button>
+      <p class="hint">This is a simulated demo for presentation purposes</p>
+    </div>
+  </section>
+
+  <!-- Phone Mockup Demo -->
+  <section id="demo" class="demo hidden">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <!-- Status bar -->
+        <div class="status-bar">
+          <span class="time">9:41</span>
+          <div class="status-icons">
+            <span class="signal"></span>
+            <span class="wifi"></span>
+            <span class="battery"></span>
+          </div>
+        </div>
+
+        <!-- App Header -->
+        <div class="app-header">
+          <span class="app-logo">IRL</span>
+          <div class="header-actions">
+            <button class="icon-btn" title="Notifications">♡</button>
+            <button class="icon-btn" id="dmBtn" title="Messages">💬</button>
+          </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="contentArea" class="content-area">
+          <!-- HOME VIEW (Stories only) -->
+          <div id="homeView" class="view active">
+            <div class="stories-row">
+              <div class="story-item your-story">
+                <div class="story-ring">
+                  <div class="story-avatar">+</div>
+                </div>
+                <span>Your story</span>
+              </div>
+              <div class="story-item">
+                <div class="story-ring seen">
+                  <div class="story-avatar" style="background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">A</div>
+                </div>
+                <span>ananya</span>
+              </div>
+              <div class="story-item">
+                <div class="story-ring">
+                  <div class="story-avatar" style="background: linear-gradient(45deg,#4facfe,#00f2fe);">R</div>
+                </div>
+                <span>rahul</span>
+              </div>
+              <div class="story-item">
+                <div class="story-ring">
+                  <div class="story-avatar" style="background: linear-gradient(45deg,#43e97b,#38f9d7);">P</div>
+                </div>
+                <span>priya</span>
+              </div>
+              <div class="story-item">
+                <div class="story-ring seen">
+                  <div class="story-avatar" style="background: linear-gradient(45deg,#fa709a,#fee140);">K</div>
+                </div>
+                <span>karan</span>
+              </div>
+              <div class="story-item">
+                <div class="story-ring">
+                  <div class="story-avatar" style="background: linear-gradient(45deg,#a18cd1,#fbc2eb);">S</div>
+                </div>
+                <span>sara</span>
+              </div>
+            </div>
+
+            <div class="empty-feed">
+              <div class="empty-icon">✨</div>
+              <h3>No posts here</h3>
+              <p>IRL keeps only Stories on your home screen.<br>Your feed stays calm.</p>
+            </div>
+          </div>
+
+          <!-- REELS VIEW (Blocked) -->
+          <div id="reelsView" class="view">
+            <div class="blocked-screen">
+              <div class="blocked-icon">🚫</div>
+              <h3>Reels are blocked</h3>
+              <p>You chose focus mode.<br>Infinite scrolling stays off.</p>
+              <button class="secondary-btn" onclick="showView('home')">Back to Stories</button>
+            </div>
+          </div>
+
+          <!-- DMS VIEW -->
+          <div id="dmsView" class="view">
+            <div class="dms-header">
+              <button class="back-btn" onclick="showView('home')">←</button>
+              <h3>Messages</h3>
+            </div>
+            <div class="dm-list">
+              <div class="dm-item" onclick="openChat('ananya')">
+                <div class="dm-avatar" style="background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">A</div>
+                <div class="dm-info">
+                  <div class="dm-name">ananya</div>
+                  <div class="dm-preview">Sent you a Reel · 2m</div>
+                </div>
+              </div>
+              <div class="dm-item" onclick="openChat('rahul')">
+                <div class="dm-avatar" style="background: linear-gradient(45deg,#4facfe,#00f2fe);">R</div>
+                <div class="dm-info">
+                  <div class="dm-name">rahul</div>
+                  <div class="dm-preview">Hey, free this weekend?</div>
+                </div>
+              </div>
+              <div class="dm-item">
+                <div class="dm-avatar" style="background: linear-gradient(45deg,#43e97b,#38f9d7);">P</div>
+                <div class="dm-info">
+                  <div class="dm-name">priya</div>
+                  <div class="dm-preview">You: Sounds good!</div>
+                </div>
+              </div>
+              <div class="dm-item">
+                <div class="dm-avatar" style="background: linear-gradient(45deg,#fa709a,#fee140);">K</div>
+                <div class="dm-info">
+                  <div class="dm-name">karan</div>
+                  <div class="dm-preview">Call me later</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHAT VIEW (with shared Reel) -->
+          <div id="chatView" class="view">
+            <div class="chat-header">
+              <button class="back-btn" onclick="showView('dms')">←</button>
+              <div class="chat-user">
+                <div class="chat-avatar" id="chatAvatar">A</div>
+                <span id="chatName">ananya</span>
+              </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+
+          <!-- SHARED REEL VIEW -->
+          <div id="reelView" class="view">
+            <div class="reel-player">
+              <div class="reel-video">
+                <div class="reel-placeholder">
+                  <div class="play-icon">▶</div>
+                  <p>Shared Reel from ananya</p>
+                </div>
+              </div>
+              <div class="reel-warning">
+                <p>You can watch this Reel.<br>Scrolling further is blocked in IRL.</p>
+                <button class="secondary-btn" onclick="showView('chat')">Close Reel</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROFILE VIEW -->
+          <div id="profileView" class="view">
+            <div class="profile-header">
+              <button class="back-btn" onclick="showView('home')">←</button>
+              <h3 id="profileName">ananya</h3>
+            </div>
+            <div class="profile-info">
+              <div class="profile-avatar-lg" id="profileAvatar">A</div>
+              <div class="profile-stats">
+                <div><strong>128</strong><span>posts</span></div>
+                <div><strong>1.2k</strong><span>followers</span></div>
+                <div><strong>890</strong><span>following</span></div>
+              </div>
+            </div>
+            <p class="profile-bio">Design · Coffee · Quiet mornings</p>
+            <div class="profile-posts">
+              <div class="post-grid-item"></div>
+              <div class="post-grid-item"></div>
+              <div class="post-grid-item"></div>
+              <div class="post-grid-item"></div>
+              <div class="post-grid-item"></div>
+              <div class="post-grid-item"></div>
+            </div>
+            <p class="profile-note">✓ You can view friends’ posts & profiles</p>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+          <button class="nav-item active" data-view="home" onclick="showView('home')">
+            <span class="nav-icon">⌂</span>
+            <span class="nav-label">Home</span>
+          </button>
+          <button class="nav-item" data-view="reels" onclick="showView('reels')">
+            <span class="nav-icon">▶</span>
+            <span class="nav-label">Reels</span>
+          </button>
+          <button class="nav-item" data-view="dms" onclick="showView('dms')">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">DMs</span>
+          </button>
+          <button class="nav-item" data-view="profile" onclick="openProfile('you')">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side explanation panel -->
+    <div class="demo-info">
+      <h2>IRL Demo</h2>
+      <p class="tagline-sm">Your people, not your feed.</p>
+      <ul class="feature-list">
+        <li><strong>Home</strong> → Only Stories (no posts)</li>
+        <li><strong>Reels tab</strong> → Completely blocked</li>
+        <li><strong>DMs</strong> → Fully usable</li>
+        <li><strong>Shared Reel</strong> → Watch once, no further scroll</li>
+        <li><strong>Profiles</strong> → Friends’ posts still visible</li>
+      </ul>
+      <p class="tech-note">
+        This is a simulated experience.<br>
+        The real Android app would use Accessibility Service<br>
+        to apply these rules on top of official Instagram.
+      </p>
+      <button class="secondary-btn" id="backToLanding">← Back to intro</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
